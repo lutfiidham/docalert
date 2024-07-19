@@ -1,0 +1,49 @@
+models:
+  Cabang:
+    nama: string unique
+    created_by: string
+    updated_by: string
+    deleted_by: string
+    softDeletes
+    relationships:
+      hasMany: Bidang
+
+  Bidang:
+    cabang_id: foreign nullable
+    nama: string unique
+    id_kepala: foreign
+    created_by: string
+    updated_by: string
+    deleted_by: string
+    softDeletes
+    relationships:
+      hasMany: dokumen
+
+  Dokumen:
+    bidang_id: foreign nullable
+    nama_dokumen: string
+    nama_pekerjaan: string
+    nama_perusahaan: string
+    nama_pic: string
+    nomor_pic: string
+    email_pic: string
+    berkas: string
+    keterangan: text
+    tgl_penerbitan: date
+    tgl_kadaluarsa: date
+    tgl_pengingat: date
+    status_follow_up: boolean
+    status_pengingat: boolean
+    keterangan: text
+    created_by: string
+    updated_by: string
+    deleted_by: string
+    softDeletes
+    relationships:
+      belongsTo: Bidang
+
+  RelasiBidang:
+    cabang_id: foreign:cabangs.id nullable
+
+  RelasiDokumen:
+    bidang_id: foreign:bidangs.id nullable
