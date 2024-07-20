@@ -35,8 +35,8 @@ class Bidang extends Model
         return $this->belongsTo(Cabang::class);
     }
 
-    public function idKepalaBidang(): BelongsTo
+    public function kepalaBidang(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_kepala_bidang', 'id');
     }
 }
