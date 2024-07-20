@@ -30,7 +30,7 @@ class CabangResource extends Resource
                         'unique' => ':Attribute cabang sudah ada.',
                     ]),
                     Forms\Components\Select::make('id_kepala_cabang')
-                    ->relationship('kepalaCabang', 'firstname')
+                    ->relationship('kepalaCabang', 'fullname')
                     ->native(false)
                     ->label('Kepala Cabang')
                     ->searchable()
@@ -47,15 +47,21 @@ class CabangResource extends Resource
                 //     ->searchable(),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('kepalaCabang.firstname')
+                Tables\Columns\TextColumn::make('kepalaCabang.fullname')
                 ->label('Kepala Cabang')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_by')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('updated_by')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('deleted_by')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('createdBy.fullname')
+                    ->label('created_by')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updatedBy.fullname')
+                    ->label('updated_by')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('deletedBy.fullname')
+                    ->label('deleted_by')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

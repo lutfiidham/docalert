@@ -29,8 +29,23 @@ class Cabang extends Model
         return $this->hasMany(Bidang::class);
     }
 
-    public function idKepalaCabang(): BelongsTo
+    public function kepalaCabang(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_kepala_cabang', 'id');
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id');
+    }
+
+    public function deletedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'deleted_by', 'id');
     }
 }
