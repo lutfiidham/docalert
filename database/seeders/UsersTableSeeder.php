@@ -20,8 +20,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'id' => $sid,
             'username' => 'superadmin',
-            'firstname' => 'Super',
-            'lastname' => 'Admin',
+            'fullname' => 'Super Admin',
             'email' => 'superadmin@starter-kit.com',
             'email_verified_at' => now(),
             'password' => Hash::make('superadmin'),
@@ -39,8 +38,7 @@ class UsersTableSeeder extends Seeder
                 DB::table('users')->insert([
                     'id' => $userId,
                     'username' => $faker->unique()->userName,
-                    'firstname' => $faker->firstName,
-                    'lastname' => $faker->lastName,
+                    'fullname' => $faker->name,
                     'email' => $faker->unique()->safeEmail,
                     'email_verified_at' => now(),
                     'password' => Hash::make('password'),

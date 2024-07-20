@@ -53,10 +53,7 @@ class UserResource extends Resource
                                     ->email()
                                     ->required()
                                     ->maxLength(255),
-                                Forms\Components\TextInput::make('firstname')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\TextInput::make('lastname')
+                                Forms\Components\TextInput::make('fullname')
                                     ->required()
                                     ->maxLength(255),
                             ]),
@@ -132,7 +129,7 @@ class UserResource extends Resource
                     ->collection('avatars')
                     ->wrap(),
                 Tables\Columns\TextColumn::make('username')->label('Username')
-                    ->description(fn (Model $record) => $record->firstname.' '.$record->lastname)
+                    ->description(fn (Model $record) => $record->fullname)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('roles.name')->label('Role')
                     ->formatStateUsing(fn ($state): string => Str::headline($state))
@@ -195,7 +192,7 @@ class UserResource extends Resource
     public static function getGlobalSearchResultDetails(Model $record): array
     {
         return [
-            'name' => $record->firstname.' '.$record->lastname,
+            'name' => $record->fullname,
         ];
     }
 

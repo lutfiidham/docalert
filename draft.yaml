@@ -28,9 +28,10 @@ models:
     nama_dokumen: string
     nama_pekerjaan: string
     nama_perusahaan: string
-    nama_pic: string
-    nomor_pic: string
-    email_pic: string
+    nama_pic_perusahaan: string
+    nomor_pic_perusahaan: string
+    email_pic_perusahaan: string
+    id_penanggungjawab: uuid foreign:users.id
     berkas: string
     tgl_penerbitan: date
     tgl_kadaluarsa: date
