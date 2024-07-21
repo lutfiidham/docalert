@@ -44,7 +44,6 @@ class Dokumen extends Model
         'tgl_penerbitan' => 'date',
         'tgl_kadaluarsa' => 'date',
         'tgl_pengingat' => 'date',
-        'status_follow_up' => 'boolean',
         'status_pengingat' => 'boolean',
     ];
 

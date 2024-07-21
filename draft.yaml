@@ -1,14 +1,14 @@
 models:
-  Cabang:
+  Pelanggan:
     id: uuid primary
     nama: string unique
-    id_kepala_cabang: uuid foreign:users.id nullable
+    alamat: string
     created_by: string
     updated_by: string
     deleted_by: string
     softDeletes
     relationships:
-      hasMany: Bidang
+      hasMany: Document
 
   Bidang:
     id: uuid primary
@@ -45,3 +45,13 @@ models:
     softDeletes
     relationships:
       belongsTo: Bidang
+  Pelanggan:
+    id: uuid primary
+    nama: string unique
+    alamat: string
+    created_by: string
+    updated_by: string
+    deleted_by: string
+    softDeletes
+    relationships:
+      hasMany: Document

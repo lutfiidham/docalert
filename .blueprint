@@ -1,14 +1,9 @@
 created:
-    - database/factories/CabangFactory.php
-    - database/factories/BidangFactory.php
-    - database/factories/DokumenFactory.php
-    - database/migrations/2024_07_20_044516_create_cabangs_table.php
-    - database/migrations/2024_07_20_044517_create_bidangs_table.php
-    - database/migrations/2024_07_20_044518_create_dokumens_table.php
-    - app/Models/Cabang.php
-    - app/Models/Bidang.php
-    - app/Models/Dokumen.php
+    - database/factories/PelangganFactory.php
+    - database/migrations/2024_07_20_180231_create_pelanggans_table.php
+    - app/Models/Pelanggan.php
 models:
     Cabang: { id: 'uuid primary', nama: 'string unique', id_kepala_cabang: 'uuid foreign:users.id nullable', created_by: string, updated_by: string, deleted_by: string, softdeletes: softDeletes, relationships: { hasMany: Bidang } }
     Bidang: { id: 'uuid primary', cabang_id: 'uuid foreign:cabangs.id nullable', nama: 'string unique', id_kepala_bidang: 'uuid foreign:users.id nullable', created_by: string, updated_by: string, deleted_by: string, softdeletes: softDeletes, relationships: { hasMany: dokumen } }
     Dokumen: { id: 'uuid primary', bidang_id: 'uuid foreign:bidangs.id nullable', nama_dokumen: string, nama_pekerjaan: string, nama_perusahaan: string, nama_pic: string, nomor_pic: string, email_pic: string, berkas: string, tgl_penerbitan: date, tgl_kadaluarsa: date, tgl_pengingat: date, status_follow_up: boolean, status_pengingat: boolean, keterangan: 'text nullable', created_by: string, updated_by: string, deleted_by: string, softdeletes: softDeletes, relationships: { belongsTo: Bidang } }
+    Pelanggan: { id: 'uuid primary', nama: 'string unique', alamat: string, created_by: string, updated_by: string, deleted_by: string, softdeletes: softDeletes, relationships: { hasMany: Document } }
