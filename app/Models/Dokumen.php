@@ -51,4 +51,29 @@ class Dokumen extends Model
     {
         return $this->belongsTo(Bidang::class);
     }
+
+    public function picSci(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'pic_sci_id', 'id');
+    }
+
+    public function pelanggan(): BelongsTo
+    {
+        return $this->belongsTo(Pelanggan::class, 'pelanggan_id', 'id');
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id');
+    }
+
+    public function deletedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'deleted_by', 'id');
+    }
 }

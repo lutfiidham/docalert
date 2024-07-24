@@ -15,9 +15,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('nama')->unique();
             $table->string('alamat');
-            $table->string('created_by');
-            $table->string('updated_by');
-            $table->string('deleted_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
