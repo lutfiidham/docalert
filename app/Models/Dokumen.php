@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use Wildside\Userstamps\Userstamps;
+use Guava\Calendar\ValueObjects\Event;
+use Guava\Calendar\Contracts\Eventable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Dokumen extends Model
+class Dokumen extends Model implements Eventable
 {
     use HasFactory, HasUuids, SoftDeletes, Userstamps;
 
@@ -46,6 +48,36 @@ class Dokumen extends Model
         'tgl_pengingat' => 'date',
         'status_pengingat' => 'boolean',
     ];
+
+    public function toEvent(): Event|array {
+        return Event::make($this)
+            ->title($this->nama_pekerjaan)
+            ->start($this->tgl_pengingat)
+            ->end($this->tgl_pengingat);
+    }
+
+    public static function getDokumenEvents()
+    {
+        $dokumens = Dokumen::all();
+        $events = $dokumens->map(function ($dokumen) {
+            return [
+                'title' => $dokumen->nama_pekerjaan,
+                'start' => $dokumen->tgl_pengingat,
+                'end' => $dokumen->tgl_pengingat,
+            ];
+        })->toArray();
+        $event2 = $dokumens->map(function ($dokumen) {
+            return [
+                'title' => $dokumen->nama_pekerjaan,
+                'start' => $dokumen->tgl_kadaluarsa,
+                'end' => $dokumen->tgl_kadaluarsa,
+                'backgroundColor' => '#ff0000',
+                'action' => 'edit'
+            ];
+        })->toArray();
+        // var_dump($events);
+        return array_merge($events,$event2);
+    }
 
     public function bidang(): BelongsTo
     {
