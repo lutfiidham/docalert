@@ -24,7 +24,7 @@ class DokumenResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-server-stack';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
